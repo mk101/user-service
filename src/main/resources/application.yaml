@@ -12,3 +12,15 @@ spring:
         globally_quoted_identifiers: true
   liquibase:
     change-log: db/changelog/db.changelog-master.xml
+
+auth-service:
+  url: ${AUTH_SERVICE_HOST}:${AUTH_SERVICE_PORT}/${AUTH_SERVICE_PATH}
+  issuer: mapping-service
+
+minio:
+  url: http://${MINIO_HOST}:${MINIO_PORT}
+  access:
+    login: ${MINIO_LOGIN}
+    password: ${MINIO_PASSWORD}
+  bucket:
+    name: ${MINIO_BUCKET_NAME}

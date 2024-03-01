@@ -4,7 +4,10 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
 
-    <changeSet id="initial" author="maksim.kolesov">
+    <changeSet id="initial-user-service" author="maksim.kolesov">
+        <sqlFile path="tables/create-tables.sql" relativeToChangelogFile="true"/>
+        <sqlFile path="constraints/create-constraints.sql" relativeToChangelogFile="true"/>
+        <sqlFile path="indexes/create-indexes.sql" relativeToChangelogFile="true"/>
     </changeSet>
 
 </databaseChangeLog>
