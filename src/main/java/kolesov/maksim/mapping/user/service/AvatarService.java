@@ -11,4 +11,6 @@ public interface AvatarService {
 
     void updateAvatar(UUID userId, @Nullable byte[] avatar,  @Nullable String extension) throws ServiceException;
 
+    void deleteAvatar(UUID userId) throws ServiceException;
+
 }

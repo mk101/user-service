@@ -9,6 +9,7 @@ import kolesov.maksim.mapping.user.repository.MinioRepository;
 import kolesov.maksim.mapping.user.service.AvatarService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 import java.util.UUID;
@@ -61,6 +62,16 @@ public class AvatarServiceImpl implements AvatarService {
         entity.get().setFilename(filename);
 
         repository.save(entity.get());
+    }
+
+    @Override
+    @Transactional
+    public void deleteAvatar(UUID userId) throws ServiceException {
+        AvatarEntity avatar = repository.findById(userId)
+                .orElseThrow(() -> new NotFoundException("User avatar not found"));
+
+        minioRepository.delete(avatar.getFilename());
+        repository.delete(avatar);
     }
 
 }

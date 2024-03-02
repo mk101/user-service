@@ -2,7 +2,11 @@ package kolesov.maksim.mapping.user.controller.impl;
 
 import kolesov.maksim.mapping.user.controller.AvatarController;
 import kolesov.maksim.mapping.user.dto.ResponseDto;
+import kolesov.maksim.mapping.user.exception.ForbiddenException;
 import kolesov.maksim.mapping.user.exception.ServiceException;
+import kolesov.maksim.mapping.user.model.Role;
+import kolesov.maksim.mapping.user.model.UserEntity;
+import kolesov.maksim.mapping.user.model.UserRoleEntity;
 import kolesov.maksim.mapping.user.service.AvatarService;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.compress.utils.FileNameUtils;
@@ -25,8 +29,23 @@ public class AvatarControllerImpl implements AvatarController {
     }
 
     @Override
-    public ResponseDto<Void> setAvatar(UUID userId, MultipartFile file) throws IOException, ServiceException {
+    public ResponseDto<Void> setAvatar(UUID userId, MultipartFile file, UserEntity user) throws IOException, ServiceException {
+        if (!user.getId().equals(userId)) {
+            throw new ForbiddenException("Access denied");
+        }
+
         avatarService.updateAvatar(userId, file.getBytes(), FileNameUtils.getExtension(file.getOriginalFilename()));
+
+        return new ResponseDto<>(null);
+    }
+
+    @Override
+    public ResponseDto<Void> deleteAvatar(UUID userId, UserEntity user) throws ServiceException {
+        if (!user.getId().equals(userId) && !user.getRoles().stream().map(UserRoleEntity::getRole).toList().contains(Role.EDIT_USERS)) {
+            throw new ForbiddenException("Access denied");
+        }
+
+        avatarService.deleteAvatar(userId);
 
         return new ResponseDto<>(null);
     }
