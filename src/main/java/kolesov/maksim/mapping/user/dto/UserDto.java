@@ -1,6 +1,7 @@
 package kolesov.maksim.mapping.user.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -21,8 +22,10 @@ public class UserDto {
 
     private UUID id;
     @NotEmpty
+    @JsonProperty("first_name")
     private String firstName;
     @NotEmpty
+    @JsonProperty("last_name")
     private String lastName;
     @NotEmpty
     private String login;

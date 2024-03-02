@@ -1,5 +1,6 @@
 package kolesov.maksim.mapping.user.controller;
 
+import jakarta.validation.Valid;
 import kolesov.maksim.mapping.user.dto.ResponseDto;
 import kolesov.maksim.mapping.user.dto.UserDto;
 import kolesov.maksim.mapping.user.exception.ServiceException;
@@ -16,6 +17,6 @@ public interface UserController {
     ResponseDto<UserDto> getUser(@RequestParam UUID id);
 
     @PutMapping
-    ResponseDto<UserDto> updateUser(@RequestBody UserDto dto, @AuthenticationPrincipal UserEntity user) throws ServiceException;
+    ResponseDto<UserDto> updateUser(@RequestBody @Valid UserDto dto, @AuthenticationPrincipal UserEntity user) throws ServiceException;
 
 }
