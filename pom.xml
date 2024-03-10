@@ -22,6 +22,7 @@
 		<mapstruct.version>1.5.5.Final</mapstruct.version>
 		<nimbus-jose-jwt.version>9.31</nimbus-jose-jwt.version>
 		<minio.version>8.5.6</minio.version>
+		<logstash-logback-encoder.version>7.4</logstash-logback-encoder.version>
 	</properties>
 
 	<dependencies>
@@ -45,6 +46,12 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>net.logstash.logback</groupId>
+			<artifactId>logstash-logback-encoder</artifactId>
+			<version>${logstash-logback-encoder.version}</version>
 		</dependency>
 
 		<dependency>

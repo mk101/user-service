@@ -12,4 +12,6 @@ EXPOSE 8080
 
 ENV JAVA_TOOL_OPTIONS="-agentlib:jdwp=transport=dt_socket,address=*:5005,server=y,suspend=n"
 
+WORKDIR /app
+
 ENTRYPOINT java -jar /app/runner.jar
