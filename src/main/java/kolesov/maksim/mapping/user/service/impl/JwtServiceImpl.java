@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.security.interfaces.RSAPublicKey;
 import java.text.ParseException;
+import java.time.Instant;
 
 @Slf4j
 @Service
@@ -30,6 +31,10 @@ public class JwtServiceImpl implements JwtService {
         try {
             SignedJWT signedJWT = SignedJWT.parse(token);
             JWSVerifier verifier = new RSASSAVerifier((RSAPublicKey) keyService.getKey());
+
+            if (Instant.now().isAfter(signedJWT.getJWTClaimsSet().getExpirationTime().toInstant())) {
+                return false;
+            }
 
             return signedJWT.verify(verifier);
         } catch (ServiceException | ParseException | JOSEException e) {
