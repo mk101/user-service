@@ -29,6 +29,8 @@ public class SecurityConfig {
                                     .permitAll()
                                 .requestMatchers(HttpMethod.GET, "avatars/*")
                                     .permitAll()
+                                .requestMatchers(HttpMethod.GET, "users")
+                                    .permitAll()
                                 .anyRequest()
                                     .authenticated()
                 )
