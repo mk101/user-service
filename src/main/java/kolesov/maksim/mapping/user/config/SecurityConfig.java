@@ -31,6 +31,8 @@ public class SecurityConfig {
                                     .permitAll()
                                 .requestMatchers(HttpMethod.GET, "users")
                                     .permitAll()
+                                .requestMatchers("/v3/api-docs")
+                                    .permitAll()
                                 .anyRequest()
                                     .authenticated()
                 )
