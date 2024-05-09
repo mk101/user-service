@@ -44,7 +44,6 @@ public class UserServiceImpl implements UserService {
             throw new ForbiddenException("User is disabled");
         }
 
-        dto.setPassword(passwordEncoder.encode(dto.getPassword()));
         repository.update(dto.getId(), dto.getFirstName(), dto.getLastName(), old.getPassword(), dto.getActive());
     }
 
