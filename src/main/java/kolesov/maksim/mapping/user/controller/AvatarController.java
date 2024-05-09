@@ -23,7 +23,7 @@ public interface AvatarController {
 
     @PostMapping(value = "/{userId}")
     @Tags(value = {@Tag(name = "UserService"), @Tag(name = "Avatar")})
-    ResponseDto<Void> setAvatar(@PathVariable UUID userId, @RequestParam("file") MultipartFile file, @AuthenticationPrincipal UserEntity user) throws IOException, ServiceException;
+    ResponseDto<Void> setAvatar(@PathVariable UUID userId, @RequestPart("file") MultipartFile file, @AuthenticationPrincipal UserEntity user) throws IOException, ServiceException;
 
     @DeleteMapping(value = "/{userId}")
     @Tags(value = {@Tag(name = "UserService"), @Tag(name = "Avatar")})
