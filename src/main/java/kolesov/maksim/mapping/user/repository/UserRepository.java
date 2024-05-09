@@ -19,7 +19,7 @@ public interface UserRepository extends CrudRepository<UserEntity, UUID> {
             value = "UPDATE \"user\" SET " +
                     "first_name = :firstName, " +
                     "last_name = :lastName, " +
-                    "password = :password" +
+                    "password = :password, " +
                     "active = :active " +
                     "WHERE id = :id",
             nativeQuery = true

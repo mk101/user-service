@@ -13,6 +13,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 import java.util.UUID;
@@ -30,6 +31,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional
     public void updateUser(UserDto dto, UUID userId) throws ServiceException {
         UserEntity old = findById(dto.getId())
                 .orElseThrow(() -> new ServiceException("User not found"));
@@ -48,6 +50,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional
     public void resetPassword(UserDto dto, UUID userId) throws ServiceException {
         if (dto.getPassword() == null) {
             throw new ServiceException("Password is null");
