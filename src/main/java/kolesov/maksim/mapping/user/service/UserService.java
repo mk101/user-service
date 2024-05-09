@@ -14,4 +14,6 @@ public interface UserService extends UserDetailsService {
 
     void updateUser(UserDto dto, UUID userId) throws ServiceException;
 
+    void resetPassword(UserDto dto, UUID userId) throws ServiceException;
+
 }

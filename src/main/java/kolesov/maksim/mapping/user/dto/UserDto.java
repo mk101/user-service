@@ -29,7 +29,7 @@ public class UserDto {
     private String lastName;
     @NotEmpty
     private String login;
-    @NotEmpty
+
     private String password;
 
     private Boolean active;

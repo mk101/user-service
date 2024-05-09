@@ -38,4 +38,10 @@ public class UserControllerImpl implements UserController {
         return new ResponseDto<>(dto);
     }
 
+    @Override
+    public ResponseDto<Void> resetPassword(UserDto dto, UserEntity user) throws ServiceException {
+        userService.resetPassword(dto, user.getId());
+        return new ResponseDto<>(null);
+    }
+
 }

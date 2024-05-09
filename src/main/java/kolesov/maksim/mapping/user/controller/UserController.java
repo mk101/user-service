@@ -23,4 +23,8 @@ public interface UserController {
     @Tags(value = {@Tag(name = "UserService")})
     ResponseDto<UserDto> updateUser(@RequestBody @Valid UserDto dto, @AuthenticationPrincipal UserEntity user) throws ServiceException;
 
+    @PostMapping("/reset")
+    @Tags(value = {@Tag(name = "UserService")})
+    ResponseDto<Void> resetPassword(@RequestBody UserDto dto, @AuthenticationPrincipal UserEntity user) throws ServiceException;
+
 }
